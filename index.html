@@ -88,13 +88,6 @@
     var filteredData;
     let data0 = d3.csv("/assets/oregon.csv").then(function (data) {
 
-        filteredData = data.filter(function (d) {
-
-            if (d["Country"] == "United States" && d["State"] == "Oregon"){
-                return d;
-            }
-
-        });
         console.log("There exist " + filteredData.length + " data points for Oregon\nSample point:");
         console.log(filteredData[0]);
     });

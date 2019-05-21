@@ -111,27 +111,36 @@
             });
         } else if (crtDiv.attr("id") === "mymap2") {
 
-        } else if (crtDiv.attr("id") === "mychart2") {
+        }  else if (crtDiv.attr("id") === "mychart1") {
 
-        } else if (crtDiv.attr("id") === "mychart1") {
             var chart = c3.generate({
+                bindto: '#chart1',
                 data: {
-                    x: 'date',
                     url: 'https://tbraun96.github.io/lab3/assets/oregon.csv',
+                    x: 'date',
+                    xFormat: '%Y',
                     type: 'line',
-                    groups: [
-                        ['AverageTemperature']
+
+                    columns: [
+                        ['date', '1900', '1910', '1920', '1930', '1940', '1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'],
+                        ['AverageTemperature', '-8.02', '-7', '-6', '-5', '-4', '-3', '-2', '-1', '0', '1', '2', '3', '4.02']
                     ]
                 },
+
                 axis: {
                     x: {
                         type: 'timeseries',
                         tick: {
-                            format: "%y"
+                            format: '%Y'
                         }
+                    },
+                    y: {
+                        max: 2015,
+                        min: 1900
                     }
                 }
             });
+
         }
 
     });

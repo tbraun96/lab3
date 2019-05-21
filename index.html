@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="please add">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
     <!-- CSS Base -->
     <link rel="stylesheet" type='text/css' media='all' href="css/webslides.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"/>
@@ -32,7 +33,7 @@
         </video>
         <div style="font-family: 'Playfair Display', serif;" class="wrap aligncenter">
             <h1>
-                <strong>The Planet is on Fire</strong>
+                <strong>Climate Change in the USA</strong>
             </h1>
         </div>
     </section>
@@ -66,8 +67,8 @@
     var ws = new WebSlides();
 
     var maxBounds = [
-        [5.499550, -167.276413], //Southwest
-        [83.162102, -52.233040]  //Northeast
+        [5.499550, -167.276413],
+        [83.162102, -52.233040]
     ];
 
     // declare the first map object
@@ -128,67 +129,28 @@
             });
         } else if (crtDiv.attr("id") === "mymap2") {
 
-        } else if (crtDiv.attr("id") === "mychart1") {
-            var chart1 = c3.generate({
-                bindto: "#chart1",
-                data: {
-                    url: 'assets/GlobalLandTemperaturesByState.csv',
-                    type: 'line'
-                },
-                axis: {
-                    y: {
-                        label: {
-                            text: 'Average Temperature',
-                            position: 'outer-middle'
-                        }
-                    },
-                    y2: {
-                        show: true,
-                        label: {
-                            text: 'Y2 Label',
-                            position: 'outer-middle'
-                        }
-                    }
-                }
-            });
-
-            $("#load").on("mouseover", function () {
-
-                chart1.load({
-                    columns: [
-                        ['data3', 300, 100, 250, 150, 300, 150, 500],
-                        ['data4', 100, 200, 150, 50, 100, 250]
-                    ]
-                });
-
-            })
-
-            $("#unload").on("click", function () {
-
-                chart1.unload({
-                    ids: ['data3', 'data4']
-                });
-
-            });
         } else if (crtDiv.attr("id") === "mychart2") {
+
+        } else if (crtDiv.attr("id") === "mychart1") {
 
 
             Promise.all([
-                d3.csv('assets/GlobalLandTemperaturesByState.csv'),
-                d3.csv('assets/test2.csv'),
-                d3.json('assets/counties.geojson')
+                d3.csv('assets/GlobalLandTemperaturesByState.csv')
             ]).then(function (datasets) {
 
                 var dataseries1 = ["t"];
                 var dataseries2 = ["q"];
-
+                let last
                 datasets[0].forEach(function (d) {
-                    dataseries1.push(+d["data1"]);
-                    dataseries2.push(+d["data2"]);
+                    let dt = +d["dt"];
+                    let temp_bar = +d["AverageTemperature"];
+                    console.log("dt=" + dt + " && temp=" + temp_bar);
+                    dataseries1.push(dt);
+                    dataseries2.push(temp_bar);
                 });
 
                 var chart2 = c3.generate({
-                    bindto: '#chart2',
+                    bindto: '#chart1',
                     data: {
                         columns: [
                             dataseries1,
@@ -205,7 +167,7 @@
                     axis: {
                         y: {
                             label: {
-                                text: 'Y Label',
+                                text: 'Average Temperature',
                                 position: 'outer-middle'
                             }
                         },

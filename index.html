@@ -54,7 +54,7 @@
     <section class="bg-apple">
         <div id="mychart1">
 
-            <div style="font-family: 'Playfair Display', serif; position:absolute; top: 10%;z-index: 999; color: green;" class="wrap aligncenter">
+            <div style="font-family: 'Playfair Display', serif; position:absolute; top: 10%;z-index: 999;" class="wrap aligncenter">
                 <h1>
                     <strong>115 Years of Oregon Climate Data</strong>
                 </h1>
@@ -78,6 +78,22 @@
             </div>
         </div>
         <img src="img/tpb1.png" style="position: absolute; left:0; bottom: 0; height: 50%; width:40%;">
+    </section>
+
+    <!-- the second chart -->
+    <section class="bg-apple">
+        <div id="mychart2">
+
+            <div style="font-family: 'Playfair Display', serif; position:absolute; top: 10%;z-index: 999;" class="wrap aligncenter">
+                <h1>
+                    <strong>115 Years of Florida Climate Data</strong>
+                </h1>
+            </div>
+
+            <div id="chart2"></div>
+            <span id="load2">Load</span>
+            <span id="unload2">Unload</span>
+        </div>
     </section>
 
 </article>
@@ -140,6 +156,12 @@
     d3.select("#mymap2").data(data1);
 
 
+    // add a basemap for the second map
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}@2x.png', {
+        maxZoom: 19
+    }).addTo(map2);
+
+
     // bind a function to the slide change event of web slides
     ws.el.addEventListener('ws:slide-change', function () {
 
@@ -156,9 +178,9 @@
             });
         } else if (crtDiv.attr("id") === "mymap2") {
             // Checks if the map container size changed and updates the map if so
-            map.invalidateSize();
+            map2.invalidateSize();
             //Fly to a new location.
-            map.flyTo([45.0902, -119.7129], 7, {
+            map2.flyTo([29.0902, -85.7129], 7, {
                 animate: true,
                 duration: 4
             });
@@ -175,6 +197,35 @@
                     columns: [
                         ['date', '1900', '1910', '1920', '1930', '1940', '1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'],
                         ['AverageTemperature', '-8.02', '-7', '-6', '-5', '-4', '-3', '-2', '-1', '0', '1', '2', '3', '4.02']
+                    ]
+                },
+
+                axis: {
+                    x: {
+                        type: 'timeseries',
+                        tick: {
+                            format: '%Y'
+                        }
+                    },
+                    y: {
+                        max: 2015,
+                        min: 1900
+                    }
+                }
+            });
+
+        } else if (crtDiv.attr("id") == "mychart2") {
+
+            var chart = c3.generate({
+                bindto: '#chart2',
+                data: {
+                    url: 'https://tbraun96.github.io/lab3/assets/Florida.csv',
+                    x: 'date',
+                    xFormat: '%Y',
+                    type: 'line',
+
+                    columns: [
+                        ['date', '1900', '1910', '1920', '1930', '1940', '1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020']
                     ]
                 },
 

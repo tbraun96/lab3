@@ -39,13 +39,17 @@
     </section>
     <!-- the first map -->
     <section class="bg-apple">
-        <div id="mymap"></div>
+
+        <div id="mymap">
+            <div style="font-family: 'Playfair Display', serif; position:absolute; top: 10%;z-index: 999; color: green;" class="wrap aligncenter">
+                <h1>
+                    <strong>The Green-Zone: The Pacific Northwest</strong>
+                </h1>
+            </div>
+        </div>
         <img src="img/tpb1.png" style="position: absolute; right:0; bottom: 0; height: 50%; width:40%;">
     </section>
-    <!-- the second map -->
-    <section class="bg-apple">
-        <div id="mymap2"></div>
-    </section>
+
     <!-- the first chart -->
     <section class="bg-apple">
         <div id="mychart1">
@@ -54,12 +58,9 @@
             <span id="unload">Unload</span>
         </div>
     </section>
-    <!-- the second chart -->
-    <section class="bg-apple">
-        <div id="mychart2">
-            <div id="chart2"></div>
-        </div>
-    </section>
+
+
+    
 </article>
 
 <script>
@@ -134,11 +135,11 @@
                         ['AverageTemperature']
                     ]
                 },
-                axis : {
-                    x : {
-                        type : 'timeseries',
-                        tick : {
-                            format : "%y"
+                axis: {
+                    x: {
+                        type: 'timeseries',
+                        tick: {
+                            format: "%y"
                         }
                     }
                 }

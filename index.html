@@ -53,6 +53,13 @@
     <!-- the first chart -->
     <section class="bg-apple">
         <div id="mychart1">
+
+            <div style="font-family: 'Playfair Display', serif; position:absolute; top: 10%;z-index: 999; color: green;" class="wrap aligncenter">
+                <h1>
+                    <strong>115 Years of Oregon Climate Data</strong>
+                </h1>
+            </div>
+
             <div id="chart1"></div>
             <span id="load">Load</span>
             <span id="unload">Unload</span>
@@ -60,6 +67,18 @@
     </section>
 
 
+    <!-- the second map -->
+    <section class="bg-apple">
+
+        <div id="mymap2">
+            <div style="font-family: 'Playfair Display', serif; position:absolute; top: 10%;z-index: 999; color: red;" class="wrap aligncenter">
+                <h1>
+                    <strong>The Red-Zone: The Southeast USA</strong>
+                </h1>
+            </div>
+        </div>
+        <img src="img/tpb1.png" style="position: absolute; left:0; bottom: 0; height: 50%; width:40%;">
+    </section>
 
 </article>
 
@@ -67,10 +86,13 @@
     // make the web slide object.
     var ws = new WebSlides();
 
+
     var maxBounds = [
         [5.499550, -167.276413],
         [83.162102, -52.233040]
     ];
+
+    var bounds = L.latLngBounds(maxBounds);
 
     // declare the first map object
     var map = L.map("mymap", {
@@ -78,8 +100,8 @@
         scrollWheelZoom: false
     }).setMaxBounds(maxBounds);
 
-    var bounds = L.latLngBounds(maxBounds);
-    map.fitBounds(bounds);//works!
+
+    map.fitBounds(bounds);
 
     // add a basemap to the first map
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}@2x.png', {
@@ -93,6 +115,29 @@
     });
 
     d3.select("#mymap").data(data0);
+
+    //Map2
+
+    var map2 = L.map("mymap2", {
+        zoomControl: false,
+        scrollWheelZoom: false
+    }).setMaxBounds(maxBounds);
+
+
+    map2.fitBounds(bounds);
+
+    // add a basemap to the first map
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}@2x.png', {
+        maxZoom: 19
+    }).addTo(map);
+
+    let data1 = d3.csv("https://tbraun96.github.io/lab3/assets/Florida.csv").then(function (data) {
+
+        console.log("There exist " + data.length + " data points for Florida\nSample point:");
+        console.log(data[0]);
+    });
+
+    d3.select("#mymap2").data(data1);
 
 
     // bind a function to the slide change event of web slides
@@ -110,7 +155,13 @@
                 duration: 4
             });
         } else if (crtDiv.attr("id") === "mymap2") {
-
+            // Checks if the map container size changed and updates the map if so
+            map.invalidateSize();
+            //Fly to a new location.
+            map.flyTo([45.0902, -119.7129], 7, {
+                animate: true,
+                duration: 4
+            });
         }  else if (crtDiv.attr("id") === "mychart1") {
 
             var chart = c3.generate({

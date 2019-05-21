@@ -15,6 +15,6 @@ Herein lies an exploration of our climate's change across time. I performed a re
  - Favicon: IconFinder
  - Javascript Libraries: D3.js, C3.js, Leaflet.js
  - Climate Data (Dynamic Maps): https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data
- - Climate Data (Static Maps): PRISM Project @ Oregon State University
+ - Climate Data (Charts): PRISM Project @ Oregon State University
  - HTML/JS/CSS libs: [WebSlides](https://webslides.tv/)
  - Google Fonts: https://fonts.googleapis.com/css?family=Playfair+Display&display=swap

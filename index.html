@@ -86,7 +86,7 @@
     }).addTo(map);
 
     var filteredData;
-    let data0 = d3.csv("assets/GlobalLandTemperaturesByState.csv").then(function (data) {
+    let data0 = d3.csv("/assets/oregon.csv").then(function (data) {
 
         filteredData = data.filter(function (d) {
 
@@ -132,56 +132,24 @@
         } else if (crtDiv.attr("id") === "mychart2") {
 
         } else if (crtDiv.attr("id") === "mychart1") {
-
-
-            Promise.all([
-                d3.csv('assets/GlobalLandTemperaturesByState.csv')
-            ]).then(function (datasets) {
-
-                var dataseries1 = ["t"];
-                var dataseries2 = ["q"];
-                let last
-                datasets[0].forEach(function (d) {
-                    let dt = +d["dt"];
-                    let temp_bar = +d["AverageTemperature"];
-                    console.log("dt=" + dt + " && temp=" + temp_bar);
-                    dataseries1.push(dt);
-                    dataseries2.push(temp_bar);
-                });
-
-                var chart2 = c3.generate({
-                    bindto: '#chart1',
-                    data: {
-                        columns: [
-                            dataseries1,
-                            dataseries2
-                        ],
-                        axes: {
-                            dataseries1: 'y2'
-                        },
-                        types: {
-                            t: 'bar',
-                            q: 'spline' // ADD
-                        }
-                    },
-                    axis: {
-                        y: {
-                            label: {
-                                text: 'Average Temperature',
-                                position: 'outer-middle'
-                            }
-                        },
-                        y2: {
-                            show: true,
-                            label: {
-                                text: 'Y2 Label',
-                                position: 'outer-middle'
-                            }
+            var chart = c3.generate({
+                data: {
+                    x: 'date',
+                    url: '/assets/oregon.csv',
+                    type: 'line',
+                    groups: [
+                        ['AverageTemperature']
+                    ]
+                },
+                axis : {
+                    x : {
+                        type : 'timeseries',
+                        tick : {
+                            format : "%y/%m/%d"
                         }
                     }
-                });
-
-            })
+                }
+            });
         }
 
     });

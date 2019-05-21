@@ -86,7 +86,7 @@
     }).addTo(map);
 
     var filteredData;
-    let data0 = d3.csv("/assets/oregon.csv").then(function (data) {
+    let data0 = d3.csv("https://tbraun96.github.io/lab3/assets/oregon.csv").then(function (data) {
 
         console.log("There exist " + filteredData.length + " data points for Oregon\nSample point:");
         console.log(filteredData[0]);
@@ -128,7 +128,7 @@
             var chart = c3.generate({
                 data: {
                     x: 'date',
-                    url: '/assets/oregon.csv',
+                    url: 'https://tbraun96.github.io/lab3/assets/oregon.csv',
                     type: 'line',
                     groups: [
                         ['AverageTemperature']

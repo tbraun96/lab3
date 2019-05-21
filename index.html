@@ -60,7 +60,7 @@
     </section>
 
 
-    
+
 </article>
 
 <script>
@@ -86,25 +86,13 @@
         maxZoom: 19
     }).addTo(map);
 
-    var filteredData;
     let data0 = d3.csv("https://tbraun96.github.io/lab3/assets/oregon.csv").then(function (data) {
 
-        console.log("There exist " + filteredData.length + " data points for Oregon\nSample point:");
-        console.log(filteredData[0]);
+        console.log("There exist " + data.length + " data points for Oregon\nSample point:");
+        console.log(data[0]);
     });
 
-    d3.select("#mymap").data(filteredData);
-
-    // decalre the second map object
-    var map2 = L.map("mymap2", {
-        zoomControl: false,
-        scrollWheelZoom: false
-    }).setMaxBounds(maxBounds);
-
-    // add a basemap for the second map
-    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}@2x.png', {
-        maxZoom: 19
-    }).addTo(map2);
+    d3.select("#mymap").data(data0);
 
 
     // bind a function to the slide change event of web slides

@@ -228,11 +228,7 @@
                     url: 'https://tbraun96.github.io/lab3/assets/oregon.csv',
                     x: 'date',
                     xFormat: '%Y',
-                    type: 'line',
-
-                    columns: [
-                        ['date', '1900', '1910', '1920', '1930', '1940', '1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020']
-                    ]
+                    type: 'spline',
                 },
 
                 axis: {
@@ -242,10 +238,6 @@
                             format: '%Y'
                         }
                     },
-                    y: {
-                        max: 2015,
-                        min: 1900
-                    }
                 }
             });
 
@@ -257,15 +249,10 @@
                     url: 'https://tbraun96.github.io/lab3/assets/Florida.csv',
                     x: 'date',
                     xFormat: '%Y',
-                    type: 'line',
-
+                    type: 'spline',
                     columns: [
-                        ['date', '1900', '1910', '1920', '1930', '1940', '1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020']
-                    ],
-
-                    axes: {
-                        data1: 'AverageTemperature'
-                    }
+                        ['AverageTemperature', -10, 0, 10, 100]
+                    ]
                 },
 
                 axis: {
@@ -275,10 +262,7 @@
                             format: '%Y'
                         }
                     },
-                    y: {
-                        max: 2015,
-                        min: 1900
-                    }
+
                 }
             });
 

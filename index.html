@@ -36,6 +36,12 @@
                 <strong>Climate Change in the USA</strong>
             </h1>
         </div>
+
+        <div class="flexblock">
+            <h3>
+                <strong>By Thomas Braun</strong>
+            </h3>
+        </div>
     </section>
     <!-- the first map -->
     <section class="bg-apple">
@@ -226,7 +232,11 @@
 
                     columns: [
                         ['date', '1900', '1910', '1920', '1930', '1940', '1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020']
-                    ]
+                    ],
+
+                    axes: {
+                        data1: 'AverageTemperature'
+                    }
                 },
 
                 axis: {

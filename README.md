@@ -9,3 +9,4 @@
  - Climate Data (Dynamic Maps): https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data
  - Climate Data (Static Maps): PRISM Project @ Oregon State University
  - HTML/JS/CSS libs: [WebSlides](https://webslides.tv/)
+ - Google Fonts: https://fonts.googleapis.com/css?family=Playfair+Display&display=swap
